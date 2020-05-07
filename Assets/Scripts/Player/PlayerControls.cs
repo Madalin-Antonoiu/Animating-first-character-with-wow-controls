@@ -78,6 +78,7 @@ public class PlayerControls : MonoBehaviour
         switch (moveState)
         {
             case MoveState.locomotion:
+                anim.SetBool("treadWater", false);
                 Locomotion();
                 break;
 
@@ -142,6 +143,10 @@ public class PlayerControls : MonoBehaviour
             {
                 if (jumping)
                     jumping = false;
+            // swimming anim here
+                anim.SetBool("swimming", false);
+                 anim.SetBool("treadWater",true);
+                
 
                 moveState = MoveState.swimming;
             }
@@ -333,6 +338,7 @@ public class PlayerControls : MonoBehaviour
             jumpSpeed = swimSpeed / 2;
             jumping = true;
             moveState = MoveState.locomotion;
+
         }
 
         //Rotating
@@ -346,9 +352,12 @@ public class PlayerControls : MonoBehaviour
         if (showGroundRay)
             Debug.DrawLine(groundRay.origin, groundRay.origin + Vector3.down * 0.15f, Color.red);
 
-        if (!jumping && jump && d_fromWaterSurface <= swimLevel)
-           
+        if (!jumping && jump && d_fromWaterSurface <= swimLevel){
+          
             Jump();
+        }
+
+
 
         if (!jumping)
         {
@@ -362,10 +371,11 @@ public class PlayerControls : MonoBehaviour
 
             controller.Move(velocity * Time.deltaTime);
 
-            if (Physics.Raycast(groundRay, out groundHit, 0.15f, groundMask))
-            {
-                if (d_fromWaterSurface < swimLevel)
+            if (Physics.Raycast(groundRay, out groundHit, 0.15f, groundMask)){
+                if (d_fromWaterSurface < swimLevel){
                     moveState = MoveState.locomotion;
+                   
+                }
             }
             else
             {
@@ -384,12 +394,18 @@ public class PlayerControls : MonoBehaviour
 
             if (Physics.Raycast(groundRay, out groundHit, 0.15f, groundMask))
             {
-                if (d_fromWaterSurface < swimLevel)
+                if (d_fromWaterSurface < swimLevel){
                     moveState = MoveState.locomotion;
+                     
+                    //anim.SetBool("swimming", true);
+                }
             }
 
             if (d_fromWaterSurface >= swimLevel)
                 jumping = false;
+               // swimming
+             
+                
         }
     }
 
