@@ -464,6 +464,8 @@ GameObject:
   - component: {fileID: 8417150082333380514}
   - component: {fileID: 8417150082333380515}
   - component: {fileID: 8417150082333380513}
+  - component: {fileID: 1386162134}
+  - component: {fileID: 1386162133}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -504,7 +506,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 0.35
+  m_Radius: 0.4
   m_SlopeLimit: 55
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -530,19 +532,19 @@ MonoBehaviour:
       primary: 73000000
       secondary: 12010000
     strafeLeft:
-      primary: 71000000
+      primary: 61000000
       secondary: 
     strafeRight:
-      primary: 65000000
+      primary: 64000000
       secondary: 
     rotateLeft:
-      primary: 61000000
+      primary: 71000000
       secondary: 14010000
     rotateRight:
-      primary: 64000000
+      primary: 65000000
       secondary: 13010000
     walkRun:
-      primary: 0b010000
+      primary: 72000000
       secondary: 
     jump:
       primary: 20000000
@@ -551,8 +553,9 @@ MonoBehaviour:
       primary: 78000000
       secondary: 
     autoRun:
-      primary: 0c010000
+      primary: 33010000
       secondary: 46010000
+  inputs: {x: 0, y: 0}
   inputNormalized: {x: 0, y: 0}
   rotation: 0
   steer: 0
@@ -561,6 +564,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   moveState: 0
+  smoothBlend: 0.1
   baseSpeed: 1
   runSpeed: 4
   rotateSpeed: 2
@@ -578,7 +582,42 @@ MonoBehaviour:
   moveDirection: {fileID: 2241726495814851008}
   fallDirection: {fileID: 8417150081529828683}
   swimDirection: {fileID: 5829182712771633177}
-  mainCam: {fileID: 0}
+  mainCam: {fileID: 395290203}
+--- !u!54 &1386162134
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8417150082333380516}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!95 &1386162133
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8417150082333380516}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 22e07c9b1385bd4449a81937a1bf52ad, type: 3}
+  m_Controller: {fileID: 9100000, guid: d8b107974ed9e6b4e896c61f317a1118, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &121830540636555820
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -666,7 +705,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: maria_prop_j_j_ong@Great Sword Idle
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -6057140222963153312, guid: 22e07c9b1385bd4449a81937a1bf52ad, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 22e07c9b1385bd4449a81937a1bf52ad, type: 3}
 --- !u!4 &4956880948226826550 stripped
 Transform:

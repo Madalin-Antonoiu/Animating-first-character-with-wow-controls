@@ -68,6 +68,7 @@ public class PlayerControls : MonoBehaviour
 
     void Update()
     {
+        anim.SetBool("jump", jumping);
         GetInputs();
         GetSwimDirection();
 
@@ -234,11 +235,11 @@ public class PlayerControls : MonoBehaviour
 
     void Jump()
     {
-        anim.SetTrigger("jump");
+       
         //set Jumping to true
         if(!jumping)
-         jumping = true;
-       
+        jumping = true;
+        
         
                 
 
@@ -274,7 +275,7 @@ public class PlayerControls : MonoBehaviour
 
         //FORWARDS BACKWARDS CONTROLS  
         inputs.y = Axis(controls.forwards.GetControlBinding(), controls.backwards.GetControlBinding());
-        anim.SetFloat("fowardsBackwards", inputs.y, smoothBlend,  Time.deltaTime);
+        anim.SetFloat("fowardsBackwards", inputs.y * currentSpeed, smoothBlend,  Time.deltaTime);
 
         if (inputs.y != 0 && !mainCam.autoRunReset){
             autoRun = false;
@@ -346,7 +347,7 @@ public class PlayerControls : MonoBehaviour
             Debug.DrawLine(groundRay.origin, groundRay.origin + Vector3.down * 0.15f, Color.red);
 
         if (!jumping && jump && d_fromWaterSurface <= swimLevel)
-            //anim.SetTrigger("jump");
+           
             Jump();
 
         if (!jumping)
