@@ -290,6 +290,8 @@ public class PlayerControls : MonoBehaviour
 
         //STRAFE LEFT RIGHT
         inputs.x = Axis(controls.strafeRight.GetControlBinding(), controls.strafeLeft.GetControlBinding());
+        anim.SetBool("strafeRight", controls.strafeRight.GetControlBinding());
+        anim.SetBool("strafeLeft", controls.strafeLeft.GetControlBinding());
 
         if(steer)
         {
