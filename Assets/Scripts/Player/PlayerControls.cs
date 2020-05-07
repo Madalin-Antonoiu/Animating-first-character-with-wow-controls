@@ -68,7 +68,7 @@ public class PlayerControls : MonoBehaviour
 
     void Update()
     {
-        anim.SetBool("jump", jumping);
+        //anim.SetBool("jump", jumping);
         GetInputs();
         GetSwimDirection();
 
@@ -78,6 +78,7 @@ public class PlayerControls : MonoBehaviour
         switch (moveState)
         {
             case MoveState.locomotion:
+                anim.SetBool("swimming", false);
                 anim.SetBool("treadWater", false);
                 Locomotion();
                 break;
@@ -139,16 +140,15 @@ public class PlayerControls : MonoBehaviour
             //if (Physics.Raycast(groundRay, out groundHit, 0.15f))
             //    currentSpeed = Mathf.Lerp(currentSpeed, baseSpeed, d_fromWaterSurface / swimLevel);
 
-            if (d_fromWaterSurface >= swimLevel)
+
+            if (d_fromWaterSurface >= swimLevel) // not allowed to jump, get into swimming mode
             {
                 if (jumping)
                     jumping = false;
             // swimming anim here
-                anim.SetBool("swimming", false);
-                 anim.SetBool("treadWater",true);
                 
-
-                moveState = MoveState.swimming;
+                 anim.SetBool("treadWater",true);
+                 moveState = MoveState.swimming;
             }
         }
 
