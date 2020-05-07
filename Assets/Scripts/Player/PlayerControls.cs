@@ -84,6 +84,7 @@ public class PlayerControls : MonoBehaviour
                 break;
 
             case MoveState.swimming:
+            anim.SetBool("swimming", true);
                 Swimming();
                 break;
         }
@@ -147,8 +148,8 @@ public class PlayerControls : MonoBehaviour
                     jumping = false;
             // swimming anim here
                 
-                 anim.SetBool("treadWater",true);
                  moveState = MoveState.swimming;
+                anim.SetBool("treadWater",true);
             }
         }
 
