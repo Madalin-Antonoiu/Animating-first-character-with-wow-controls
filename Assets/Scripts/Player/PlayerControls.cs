@@ -53,10 +53,12 @@ public class PlayerControls : MonoBehaviour
     public Transform groundDirection, moveDirection, fallDirection, swimDirection;
     [HideInInspector]
     public CameraController mainCam;
+    Animator anim;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -90,6 +92,8 @@ public class PlayerControls : MonoBehaviour
 
             if (run)
             {
+                //xox
+                //anim.SetTrigger("run");
                 currentSpeed *= runSpeed;
 
                 if (inputNormalized.y < 0)
@@ -108,6 +112,7 @@ public class PlayerControls : MonoBehaviour
 
         //Press space to Jump
         if (jump && controller.isGrounded && slopeAngle <= controller.slopeLimit && !jumping)
+
             Jump();
 
         //apply gravity if not grounded
@@ -223,12 +228,17 @@ public class PlayerControls : MonoBehaviour
 
     void Jump()
     {
+        anim.SetTrigger("jump");
         //set Jumping to true
         if(!jumping)
          jumping = true;
+       
+        
+                
 
         switch(moveState)
         {
+            
             case MoveState.locomotion:
                 //Set jump direction and speed
                 jumpDirection = (transform.forward * inputs.y + transform.right * inputs.x).normalized;
@@ -236,9 +246,11 @@ public class PlayerControls : MonoBehaviour
 
                 //set velocity Y
                 velocityY = Mathf.Sqrt(-gravity * jumpHeight);
+
                 break;
 
             case MoveState.swimming:
+                
                 //Set jump direction and speed
                 jumpDirection = (transform.forward * inputs.y + transform.right * inputs.x).normalized;
                 jumpSpeed = swimSpeed;
@@ -323,6 +335,7 @@ public class PlayerControls : MonoBehaviour
             Debug.DrawLine(groundRay.origin, groundRay.origin + Vector3.down * 0.15f, Color.red);
 
         if (!jumping && jump && d_fromWaterSurface <= swimLevel)
+            //anim.SetTrigger("jump");
             Jump();
 
         if (!jumping)
