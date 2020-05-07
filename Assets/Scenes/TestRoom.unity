@@ -6144,6 +6144,31 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1386162132 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8417150082333380516, guid: 506cda14d1d80b94e8443d3f0790d862,
+    type: 3}
+  m_PrefabInstance: {fileID: 8417150082283237223}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1386162133
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386162132}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 22e07c9b1385bd4449a81937a1bf52ad, type: 3}
+  m_Controller: {fileID: 9100000, guid: d8b107974ed9e6b4e896c61f317a1118, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1507284571
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10369,5 +10394,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3044542423610068044, guid: 506cda14d1d80b94e8443d3f0790d862, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 506cda14d1d80b94e8443d3f0790d862, type: 3}
