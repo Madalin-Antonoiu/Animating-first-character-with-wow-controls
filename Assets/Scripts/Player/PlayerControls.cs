@@ -6,7 +6,10 @@ public class PlayerControls : MonoBehaviour
 {
     //inputs
     public Controls controls;
+
+    [SerializeField]
     Vector2 inputs;
+
     [HideInInspector]
     public Vector2 inputNormalized;
     [HideInInspector]
@@ -65,10 +68,6 @@ public class PlayerControls : MonoBehaviour
 
     void Update()
     {
-        //Magical animator blending step1
-        AnimateMove(Input.GetAxis("Horizontal") * currentSpeed, Input.GetAxis("Vertical")* currentSpeed);
-       
-
         GetInputs();
         GetSwimDirection();
 
@@ -87,10 +86,6 @@ public class PlayerControls : MonoBehaviour
         }
     }
 
-    //Magical animator blending step2
-    void AnimateMove(float x, float y){
-        anim.SetFloat("Blend", y, smoothBlend,  Time.deltaTime);
-    }
 
     void Locomotion()
     {
@@ -279,9 +274,12 @@ public class PlayerControls : MonoBehaviour
 
         //FORWARDS BACKWARDS CONTROLS  
         inputs.y = Axis(controls.forwards.GetControlBinding(), controls.backwards.GetControlBinding());
+        anim.SetFloat("fowardsBackwards", inputs.y, smoothBlend,  Time.deltaTime);
 
-        if (inputs.y != 0 && !mainCam.autoRunReset)
+        if (inputs.y != 0 && !mainCam.autoRunReset){
             autoRun = false;
+            
+        }
 
         if(autoRun)
         {

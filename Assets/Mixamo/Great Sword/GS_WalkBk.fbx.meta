@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 47586490c57be8c4e839a028ad5a05f0
+guid: aaa9d7b93a5565c45b4ad8f533af5acd
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: GS_WalkForward
+    second: GS_WalkBackwards
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: GS_WalkForward
+      name: GS_WalkBackwards
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 41
+      lastFrame: 39
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
