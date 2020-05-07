@@ -15,8 +15,10 @@ public class PlayerControls : MonoBehaviour
     [HideInInspector]
     public bool steer, autoRun;
     public LayerMask groundMask;
-
     public MoveState moveState = MoveState.locomotion;
+    public float smoothBlend = 0.1f;
+    Animator anim;
+
 
     //velocity
     Vector3 velocity;
@@ -53,7 +55,7 @@ public class PlayerControls : MonoBehaviour
     public Transform groundDirection, moveDirection, fallDirection, swimDirection;
     [HideInInspector]
     public CameraController mainCam;
-    Animator anim;
+    
 
     void Start()
     {
@@ -63,6 +65,10 @@ public class PlayerControls : MonoBehaviour
 
     void Update()
     {
+        //Magical animator blending step1
+        AnimateMove(Input.GetAxis("Horizontal") * currentSpeed, Input.GetAxis("Vertical")* currentSpeed);
+       
+
         GetInputs();
         GetSwimDirection();
 
@@ -79,6 +85,11 @@ public class PlayerControls : MonoBehaviour
                 Swimming();
                 break;
         }
+    }
+
+    //Magical animator blending step2
+    void AnimateMove(float x, float y){
+        anim.SetFloat("Blend", y, smoothBlend,  Time.deltaTime);
     }
 
     void Locomotion()
