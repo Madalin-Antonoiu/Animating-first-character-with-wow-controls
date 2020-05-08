@@ -10422,7 +10422,7 @@ GameObject:
   - component: {fileID: 7402046367058655416}
   - component: {fileID: 7402046367058655419}
   m_Layer: 0
-  m_Name: Player - Sword
+  m_Name: Player - Longbow
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
