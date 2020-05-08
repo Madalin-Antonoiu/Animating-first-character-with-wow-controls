@@ -68,7 +68,12 @@ public class PlayerControls : MonoBehaviour
 
     void Update()
     {
-        anim.SetBool("jump", jumping);
+        anim.SetBool("jump", jumping);// jumps
+
+        if(Input.GetKeyDown(KeyCode.O)){
+            anim.SetTrigger("1slash");
+        }
+
         GetInputs();
         GetSwimDirection();
 
