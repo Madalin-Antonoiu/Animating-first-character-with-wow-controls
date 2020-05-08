@@ -368,6 +368,7 @@ public class PlayerControls : MonoBehaviour
 
         if (!jumping && jump && d_fromWaterSurface <= swimLevel){
              anim.SetBool("treadWater", false); // Correntx2 - found it!
+              anim.SetBool("swimming", false);
             Jump();
         }
 
