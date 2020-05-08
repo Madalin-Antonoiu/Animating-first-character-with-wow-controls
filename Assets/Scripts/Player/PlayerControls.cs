@@ -68,7 +68,7 @@ public class PlayerControls : MonoBehaviour
 
     void Update()
     {
-        //anim.SetBool("jump", jumping);
+        anim.SetBool("jump", jumping);
         GetInputs();
         GetSwimDirection();
 
@@ -122,7 +122,7 @@ public class PlayerControls : MonoBehaviour
 
         //Press space to Jump
         if (jump && controller.isGrounded && slopeAngle <= controller.slopeLimit && !jumping)
-
+           
             Jump();
 
         //apply gravity if not grounded
@@ -132,8 +132,8 @@ public class PlayerControls : MonoBehaviour
             velocityY = Mathf.Lerp(velocityY, terminalVelocity, 0.25f);
 
         //checking WaterLevel
-        if (inWater)
-        {        
+        if (inWater){       
+           
             //setting ground ray
             groundRay.origin = transform.position + collisionPoint + Vector3.up * 0.05f;
             groundRay.direction = Vector3.down;
@@ -142,14 +142,25 @@ public class PlayerControls : MonoBehaviour
             //    currentSpeed = Mathf.Lerp(currentSpeed, baseSpeed, d_fromWaterSurface / swimLevel);
 
 
-            if (d_fromWaterSurface >= swimLevel) // not allowed to jump, get into swimming mode
-            {
-                if (jumping)
+            if (d_fromWaterSurface >= swimLevel) {
+                
+                
+
+                if (jumping){
+                    // anim.SetBool("treadWater",false);
+                    //  anim.SetBool("jump",true);
                     jumping = false;
+                    //anim.SetBool("jump", true);
+                    anim.SetBool("treadWater",true);
+                    
+                   
+                
+            }
             // swimming anim here
                 
                  moveState = MoveState.swimming;
-                anim.SetBool("treadWater",true);
+                 anim.SetBool("jump",false); // jumping/ falling into water -> instantly into treadWater = good!
+                 anim.SetBool("treadWater",true);
             }
         }
 
@@ -170,6 +181,8 @@ public class PlayerControls : MonoBehaviour
         {
             //stop jumping if grounded
             if(jumping)
+            anim.SetBool("jump", false); // don't remove. This Sets false on a ground jump :)
+               
                 jumping = false;
 
             // stop gravity if grounded
@@ -239,15 +252,14 @@ public class PlayerControls : MonoBehaviour
         DebugGroundNormals();
     }
 
-    void Jump()
-    {
+    void Jump(){
        
         //set Jumping to true
-        if(!jumping)
-        jumping = true;
-        
-        
-                
+        if(!jumping){
+            jumping = true;
+             //anim.SetBool("jump", true); - Jumping on land
+        } 
+
 
         switch(moveState)
         {
@@ -333,6 +345,7 @@ public class PlayerControls : MonoBehaviour
     {
         if(!inWater && !jumping)
         {
+            
             velocityY = 0;
             velocity = new Vector3(velocity.x, velocityY, velocity.z);
             jumpDirection = velocity;
@@ -354,7 +367,7 @@ public class PlayerControls : MonoBehaviour
             Debug.DrawLine(groundRay.origin, groundRay.origin + Vector3.down * 0.15f, Color.red);
 
         if (!jumping && jump && d_fromWaterSurface <= swimLevel){
-          
+             anim.SetBool("treadWater", false); // Correntx2 - found it!
             Jump();
         }
 
@@ -397,15 +410,18 @@ public class PlayerControls : MonoBehaviour
             {
                 if (d_fromWaterSurface < swimLevel){
                     moveState = MoveState.locomotion;
-                     
+                       
+                
                     //anim.SetBool("swimming", true);
                 }
             }
 
-            if (d_fromWaterSurface >= swimLevel)
+            if (d_fromWaterSurface >= swimLevel){
                 jumping = false;
+                          anim.SetBool("treadWater", true); // Jumping from water surface removes treadWater
+                         anim.SetBool("jump", true); // Correct!
                // swimming
-             
+             }
                 
         }
     }
