@@ -316,6 +316,7 @@ public class PlayerControls : MonoBehaviour
         inputs.x = Axis(controls.strafeRight.GetControlBinding(), controls.strafeLeft.GetControlBinding());
         anim.SetBool("strafeRight", controls.strafeRight.GetControlBinding());
         anim.SetBool("strafeLeft", controls.strafeLeft.GetControlBinding());
+        anim.SetFloat("leftRight", inputs.x * currentSpeed, smoothBlend,  Time.deltaTime);
 
         if(steer)
         {
