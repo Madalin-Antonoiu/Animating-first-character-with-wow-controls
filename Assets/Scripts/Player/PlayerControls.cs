@@ -300,6 +300,15 @@ public class PlayerControls : MonoBehaviour
         inputs.y = Axis(controls.forwards.GetControlBinding(), controls.backwards.GetControlBinding());
         anim.SetFloat("fowardsBackwards", inputs.y * currentSpeed, smoothBlend,  Time.deltaTime);
 
+        anim.SetBool("bothMouseButtons", false);
+        //if both mouse buttons pressed, get animator play run fw
+        if(Input.GetMouseButton(0) && Input.GetMouseButton(1)){
+            print("0 & 1 held down");
+            anim.SetBool("bothMouseButtons", true);
+        }
+
+               
+
         if (inputs.y != 0 && !mainCam.autoRunReset){
             autoRun = false;
             
